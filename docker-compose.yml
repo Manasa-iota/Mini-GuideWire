@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports: ["8080:8080"]
+  auth-service:
+    build: ./auth-service
+    ports: ["8081:8081"]
+  customer-service:
+    build: ./customer-service
+    ports: ["8082:8082"]
+  policy-service:
+    build: ./policy-service
+    ports: ["8083:8083"]
+  claims-service:
+    build: ./claims-service
+    ports: ["8084:8084"]
+  billing-service:
+    build: ./billing-service
+    ports: ["8085:8085"]
+  notification-service:
+    build: ./notification-service
+    ports: ["8086:8086"]
+  audit-service:
+    build: ./audit-service
+    ports: ["8087:8087"]

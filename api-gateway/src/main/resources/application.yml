@@ -1,0 +1,32 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth
+          uri: http://localhost:8081
+          predicates: [ Path=/api/auth/** ]
+        - id: customer
+          uri: http://localhost:8082
+          predicates: [ Path=/api/customers/** ]
+        - id: policy
+          uri: http://localhost:8083
+          predicates: [ Path=/api/policies/** ]
+        - id: claims
+          uri: http://localhost:8084
+          predicates: [ Path=/api/claims/** ]
+        - id: billing
+          uri: http://localhost:8085
+          predicates: [ Path=/api/invoices/** ]
+        - id: notification
+          uri: http://localhost:8086
+          predicates: [ Path=/api/notifications/** ]
+        - id: audit
+          uri: http://localhost:8087
+          predicates: [ Path=/api/audits/** ]
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
