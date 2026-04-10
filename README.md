@@ -20,6 +20,7 @@ InsureFlow Cloud is a cloud-native, microservices-based insurance backend inspir
 - DTO-based API boundaries.
 - Shared `GlobalExceptionHandler` and `ErrorResponse` contract.
 - Correlation header propagation with `X-Correlation-Id`.
+- JWT-based authentication with signed tokens and role claims enforced by each domain service.
 - Billing payment endpoint uses `idempotencyKey` to prevent duplicate charges.
 
 ## Quick Start

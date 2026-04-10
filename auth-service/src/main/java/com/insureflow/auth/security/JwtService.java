@@ -1,15 +1,20 @@
 package com.insureflow.auth.security;
 
 import com.insureflow.auth.entity.AuthUser;
+import com.insureflow.common.security.JwtTokenProvider;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
+import java.util.Map;
 
 @Service
 public class JwtService {
+    private final JwtTokenProvider tokenProvider;
+
+    public JwtService(JwtTokenProvider tokenProvider) {
+        this.tokenProvider = tokenProvider;
+    }
+
     public String generateToken(AuthUser user) {
-        String raw = user.getEmail() + ":" + user.getRole().name();
-        return Base64.getEncoder().encodeToString(raw.getBytes(StandardCharsets.UTF_8));
+        return tokenProvider.generateToken(user.getEmail(), Map.of("role", user.getRole().name()));
     }
 }

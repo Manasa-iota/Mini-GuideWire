@@ -6,7 +6,10 @@ import com.insureflow.auth.dto.RegisterRequest;
 import com.insureflow.auth.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -25,5 +28,10 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<Map<String, Object>> me(Authentication authentication) {
+        return ResponseEntity.ok(Map.of("username", authentication.getName(), "authorities", authentication.getAuthorities()));
     }
 }
